@@ -25,10 +25,35 @@ tokenizer, and the same vision setup. They differ in four places.
 | `--pcie-frac` | absent (engine default) | `0.00` | The old config pinned the PCIe share of expert misses to zero, which forces byte-identical repeats for A/B runs but costs decode speed. The live config lets the engine choose the fraction, so decoding is faster but repeated prompts are not bit-identical. See `docs/DETAILS.md` on `--pcie-frac`. |
 | `--spec-min-p` | `0.5` | `0.50` | Same value, written differently by a different setup run. No behavioural difference. |
 
-Everything else is identical: `--expert-cache auto`, `--prefill auto`, `--spec 4`,
-`--mtp I:\IA\Strata-data\mtp\rt`, `--kv int8`, `--kv-resident 32768`, `--vision`,
-`--vram-reserve-mib 700`, `cwd`, `tokenizer`, `model_name`, `log`, `lib_dirs`, `gpu`,
-`gpus_asked`, and the whole `vision` block.
+Everything else is identical in both files:
+
+| Setting | Value (both files) |
+|---|---|
+| `exe` | `I:\IA\Strata\engine\strata.exe` |
+| `--pack` | `I:\IA\Strata-data\packs\q2_0` |
+| `--native` | `I:\IA\Strata-data\models\Q2_0\Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf` |
+| `--ple-gguf` | `I:\IA\Strata-data\models\Q2_0\Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf` |
+| `--expert-profile` | `I:\IA\Strata\data\expert-profile.bin` |
+| `--expert-cache` | `auto` |
+| `--prefill` | `auto` |
+| `--spec` | `4` |
+| `--mtp` | `I:\IA\Strata-data\mtp\rt` |
+| `--kv` | `int8` |
+| `--kv-resident` | `32768` |
+| `--vision` | enabled (flag, no value) |
+| `--vram-reserve-mib` | `700` |
+| `cwd` | `I:\IA\Strata` |
+| `tokenizer` | `I:\IA\Strata-data\packs\q2_0\tokenizer` |
+| `model_name` | `qwen3.8-flash-next-q2_0` |
+| `log` | `I:\IA\Strata\strata-q2_0.log` |
+| `lib_dirs` | `I:\IA\Strata\.venv\Lib\site-packages\nvidia\cu13\bin\x86_64` |
+| `gpu` | `0` |
+| `gpus_asked` | `true` |
+| `vision.exe` | `I:\IA\Strata\engine\strata-vision.exe` |
+| `vision.mmproj` | `I:\IA\Strata-data\models\mmproj-Qwen3.8-Flash-Next-BF16.gguf` |
+| `vision.model` | `I:\IA\Strata-data\models\Q2_0\Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf` |
+| `vision.gpu` | `true` |
+| `vision.max_tokens` | `1024` |
 
 ---
 
